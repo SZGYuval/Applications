@@ -1,0 +1,16 @@
+name: print-something
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "Message to print"
+        required: true
+        type: string
+
+jobs:
+  print:
+    runs-on: codebuild-Applications-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Print input
+        run: echo "${{ inputs.message }}"
